@@ -14,7 +14,7 @@ public class Car extends Vehicle{
         this.numberOfSeats = 4;
     }
 
-    public Car(String color, String state, SizeCategory type, Owner owner, Entrance entrance, String license, String company, String numberPlate, int numberOfSeats) {
+    public Car(String color, String state, SizeCategory type, Owner owner, Entrance entrance, String license, String company, int numberOfSeats) {
         super(color, state, type, owner, entrance);
         this.license = license;
         this.company = company;

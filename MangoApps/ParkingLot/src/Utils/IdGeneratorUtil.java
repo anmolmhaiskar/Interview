@@ -46,8 +46,9 @@ public class IdGeneratorUtil {
 
 
         String code = codeBuilder.toString();
-        if (VehicleRepository.registrationNos != null && !VehicleRepository.registrationNos.contains(code)) {
-            VehicleRepository.registrationNos.add(code);
+        HashSet<String> registrationNoSet = VehicleFactory.getInstance().getRegistrationNos();
+        if ( registrationNoSet!= null && !registrationNoSet.contains(code)) {
+            registrationNoSet.add(code);
             System.out.println("Generated Vehicle Registration No. : " + code);
         }
 

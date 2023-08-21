@@ -8,7 +8,7 @@ public enum SizeCategory {
 
     public String toString(){
         return switch (this) {
-            case SMALL -> "PERSONAL";
+            case SMALL -> "SMALL";
             case MEDIUM -> "MEDIUM";
             case LARGE -> "LARGE";
             case HUGE -> "HUGE";

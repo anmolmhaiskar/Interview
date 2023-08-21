@@ -5,7 +5,7 @@ import enums.SizeCategory;
 
 import java.util.random.RandomGenerator;
 
-public abstract class Vehicle {
+public class Vehicle {
     private int id;
     private String color;
     private String state;
@@ -20,14 +20,6 @@ public abstract class Vehicle {
         setRegistrationNo();
         this.size= SizeCategory.MEDIUM;
         this.owner = null;
-    }
-
-    public Vehicle(Owner owner) {
-        this.id = IdGeneratorUtil.generateID(this);
-        this.color = "white";
-        setRegistrationNo();
-        this.size= SizeCategory.MEDIUM;
-        this.owner = owner;
     }
 
     public Vehicle(String color,String state, SizeCategory type, Owner owner, Entrance entrance) {

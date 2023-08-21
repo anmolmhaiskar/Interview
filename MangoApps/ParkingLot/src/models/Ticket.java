@@ -13,15 +13,22 @@ public class Ticket {
     private double amount;
     private Payment payment;
 
-    public Ticket(Vehicle vehicle, Spot spot, double amount) {
+    public Ticket(Vehicle vehicle, Spot spot) {
         this.ticketNo = IdGeneratorUtil.generateID(this);
         this.vehicle = vehicle;
         this.spot = spot;
-        this.amount = amount;
+        this.amount = 0.0;
         this.start_time = new Date();
         this.payment = null;
     }
 
+    public int getTicketNo() {
+        return ticketNo;
+    }
+
+    public void setTicketNo(int ticketNo) {
+        this.ticketNo = ticketNo;
+    }
 
     public Vehicle getVehicle() {
         return vehicle;

@@ -1,29 +1,26 @@
 package models;
 
+import Utils.IdGeneratorUtil;
 import enums.ModeOfPayment;
 import enums.PaymentStatus;
 
 public class Payment {
-    int id;
-    Ticket ticket;
-    ModeOfPayment mode;
-    PaymentStatus paymentStatus;
-    double amount;
-    Owner owner;
-    int numberOfRetries;
+    private int id;
+    private Ticket ticket;
+    private ModeOfPayment mode;
+    private PaymentStatus paymentStatus;
+    private double amount;
+    private Owner owner;
+    private int numberOfRetries;
 
     public Payment(Ticket ticket, ModeOfPayment mode, PaymentStatus paymentStatus, double amount, Owner owner) {
-        setPaymentId();
+        this.id = IdGeneratorUtil.generateID(this);
         this.ticket = ticket;
         this.mode = mode;
         this.paymentStatus = paymentStatus;
         this.amount = amount;
         this.owner = owner;
         this.numberOfRetries = 0;
-    }
-
-    //TODO:generate id
-    private void setPaymentId() {
     }
 
     public int getId() {

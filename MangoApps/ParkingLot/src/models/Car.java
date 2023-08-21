@@ -4,23 +4,20 @@ import enums.SizeCategory;
 
 public class Car extends Vehicle{
 //    int id;
-    String license;
-    String company;
-    String numberPlate;
-    int numberOfSeats;
+    private String license;
+    private String company;
+    private int numberOfSeats;
 
     public Car() {
         this.license = null;
         this.company = null;
-        this.numberPlate = null;
         this.numberOfSeats = 4;
     }
 
-    public Car(String color, SizeCategory type, Owner owner, Entrance entrance, String license, String company, String numberPlate, int numberOfSeats) {
-        super(color, type, owner, entrance);
+    public Car(String color, String state, SizeCategory type, Owner owner, Entrance entrance, String license, String company, String numberPlate, int numberOfSeats) {
+        super(color, state, type, owner, entrance);
         this.license = license;
         this.company = company;
-        this.numberPlate = numberPlate;
         this.numberOfSeats = numberOfSeats;
     }
 
@@ -38,14 +35,6 @@ public class Car extends Vehicle{
 
     public void setCompany(String company) {
         this.company = company;
-    }
-
-    public String getNumberPlate() {
-        return numberPlate;
-    }
-
-    public void setNumberPlate(String numberPlate) {
-        this.numberPlate = numberPlate;
     }
 
     public int getNumberOfSeats() {

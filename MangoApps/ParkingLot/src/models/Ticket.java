@@ -1,18 +1,20 @@
 package models;
 
+import Utils.IdGeneratorUtil;
+
 import java.util.Date;
 
 public class Ticket {
-    int ticketNo;
-    Vehicle vehicle;
-    Date start_time;
-    Date end_time;
-    Spot spot;
-    double amount;
-    Payment payment;
+    private int ticketNo;
+    private Vehicle vehicle;
+    private Date start_time;
+    private Date end_time;
+    private Spot spot;
+    private double amount;
+    private Payment payment;
 
     public Ticket(Vehicle vehicle, Spot spot, double amount) {
-        setTicketNumber();
+        this.ticketNo = IdGeneratorUtil.generateID(this);
         this.vehicle = vehicle;
         this.spot = spot;
         this.amount = amount;
@@ -20,9 +22,6 @@ public class Ticket {
         this.payment = null;
     }
 
-//    TODO: generate ticket number
-    private void setTicketNumber() {
-    }
 
     public Vehicle getVehicle() {
         return vehicle;

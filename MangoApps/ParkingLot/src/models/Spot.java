@@ -1,19 +1,21 @@
 package models;
 
+import Utils.IdGeneratorUtil;
 import enums.SizeCategory;
 
 public class Spot {
-//    private int id;
+    private int id;
     private Vehicle vehicle;
-    SizeCategory size;
-    double costPerHour;
-    int xCoordinate;
-    int yCoordinate;
+    private SizeCategory size;
+    private double costPerHour;
+    private int xCoordinate;
+    private int yCoordinate;
 
     public Spot() {
     }
 
     public Spot(SizeCategory size, double costPerHour, int xCoordinate, int yCoordinate) {
+        this.id = IdGeneratorUtil.generateID(this);
         this.size = size;
         this.costPerHour = costPerHour;
         this.xCoordinate = xCoordinate;

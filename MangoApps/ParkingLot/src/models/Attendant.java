@@ -2,28 +2,26 @@ package models;
 
 import Utils.IdGeneratorUtil;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class Owner {
+public class Attendant {
     private int id;
     private String name;
+    private int gateNo;
+    private String emailId;
     private String phoneNo;
     private String gender;
     private int age;
-    private List<Vehicle> vehicles;
-    private List<Ticket> tickets;
-    private List<Payment> payments;
 
-    public Owner(String name, String phoneNo, String gender, int age) {
+    public Attendant() {
+    }
+
+    public Attendant(String name, int gateNo, String emailId, String phoneNo, String gender, int age) {
         this.id = IdGeneratorUtil.generateID(this);
         this.name = name;
+        this.gateNo = gateNo;
+        this.emailId = emailId;
         this.phoneNo = phoneNo;
         this.gender = gender;
         this.age = age;
-        this.vehicles = new ArrayList<>();
-        this.payments = new ArrayList<>();
-        this.tickets = new ArrayList<>();
     }
 
     public String getName() {
@@ -32,6 +30,22 @@ public class Owner {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getGateNo() {
+        return gateNo;
+    }
+
+    public void setGateNo(int gateNo) {
+        this.gateNo = gateNo;
+    }
+
+    public String getEmailId() {
+        return emailId;
+    }
+
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
     }
 
     public String getPhoneNo() {
@@ -50,35 +64,11 @@ public class Owner {
         this.gender = gender;
     }
 
-    public List<Vehicle> getVehicles() {
-        return vehicles;
-    }
-
-    public void addVehicles(Vehicle vehicle) {
-        vehicles.add(vehicle);
-    }
-
     public int getAge() {
         return age;
     }
 
     public void setAge(int age) {
         this.age = age;
-    }
-
-    public List<Payment> getPayments() {
-        return payments;
-    }
-
-    public void addPayments(Payment payment) {
-        payments.add(payment);
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void addTickets(Ticket ticket) {
-        tickets.add(ticket);
     }
 }

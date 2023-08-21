@@ -1,16 +1,21 @@
 package models;
 
+import Utils.IdGeneratorUtil;
 import enums.SizeCategory;
 
+import java.util.random.RandomGenerator;
+
 public abstract class Vehicle {
-//    int id;
-    String color;
-    long registrationNo;
-    SizeCategory size;
-    Owner owner;
-    Entrance entrance;
+    private int id;
+    private String color;
+    private String state;
+    private String registrationNo;
+    private SizeCategory size;
+    private Owner owner;
+    private Entrance entrance;
 
     public Vehicle() {
+        this.id = IdGeneratorUtil.generateID(this);
         this.color = "white";
         setRegistrationNo();
         this.size= SizeCategory.MEDIUM;
@@ -18,14 +23,16 @@ public abstract class Vehicle {
     }
 
     public Vehicle(Owner owner) {
+        this.id = IdGeneratorUtil.generateID(this);
         this.color = "white";
         setRegistrationNo();
         this.size= SizeCategory.MEDIUM;
         this.owner = owner;
     }
 
-    public Vehicle(String color, SizeCategory type, Owner owner, Entrance entrance) {
+    public Vehicle(String color,String state, SizeCategory type, Owner owner, Entrance entrance) {
         this.color = color;
+        this.state = state;
         setRegistrationNo();
         this.size = type;
         this.owner = owner;
@@ -40,13 +47,13 @@ public abstract class Vehicle {
         this.color = color;
     }
 
-    public long getRegistrationNo() {
+    public String getRegistrationNo() {
         return registrationNo;
     }
 
     //TODO: Set registration no to every newly created vehicle
     public void setRegistrationNo() {
-        this.registrationNo = registrationNo;
+        this.registrationNo = IdGeneratorUtil.generateRegistrationNo(5, this.state);
     }
 
     public SizeCategory getSize() {
@@ -63,5 +70,13 @@ public abstract class Vehicle {
 
     public void setEntrance(Entrance entrance) {
         this.entrance = entrance;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

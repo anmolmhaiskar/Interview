@@ -1,9 +1,9 @@
 package models;
 
 public class Entrance {
-    int gateNo;
-    int xCoordinate;
-    int yCoordinate;
+    private int gateNo;
+    private int xCoordinate;
+    private int yCoordinate;
 
     public Entrance(int gateNo, int xCoordinate, int yCoordinate) {
         this.gateNo = gateNo;

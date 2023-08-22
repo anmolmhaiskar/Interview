@@ -9,8 +9,6 @@ public class ParkingLot {
     private int capacity;
     private String phoneNo;
     private List<Entrance> entrances;
-    private List<Exit> exits;
-
     private List<Vehicle> vehicles;
     private List<Spot> spots;
     private List<Attendant> attendants;
@@ -24,7 +22,6 @@ public class ParkingLot {
         this.capacity = capacity;
         this.phoneNo = phoneNo;
         this.entrances = new ArrayList<>();
-        this.exits = new ArrayList<>();
         this.vehicles = new ArrayList<>();
         this.spots = new ArrayList<>();
         this.attendants = new ArrayList<>();
@@ -68,14 +65,6 @@ public class ParkingLot {
 
     public void setEntrances(List<Entrance> entrances) {
         this.entrances = entrances;
-    }
-
-    public List<Exit> getExits() {
-        return exits;
-    }
-
-    public void setExits(List<Exit> exits) {
-        this.exits = exits;
     }
 
     public List<Vehicle> getVehicles() {

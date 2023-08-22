@@ -12,12 +12,12 @@ public class TicketRepository {
     HashMap<Vehicle, Ticket> vehicleTicketMap;
     List<Ticket> tickets;
 
-    HashMap<String, List<Integer>> vehicleColoredTicketMap;
+    HashMap<String, List<Ticket>> vehicleColoredTicketMap;
 
     public TicketRepository(){
         vehicleTicketMap = new HashMap<>();
         tickets = new ArrayList<>();
-        vehicleColoredTicketMap = new HashMap<String, List<Integer>>();
+        vehicleColoredTicketMap = new HashMap<String, List<Ticket>>();
     }
 
     public Ticket createTicket(Vehicle vehicle, Spot spot){
@@ -40,16 +40,16 @@ public class TicketRepository {
             vehicleTicketMap.put(vehicle, ticket);
         }
 
-        List<Integer> colorTickets = vehicleColoredTicketMap.getOrDefault(vehicle.getColor(), new ArrayList<Integer>());
-        colorTickets.add(ticket.getTicketNo());
+        List<Ticket> colorTickets = vehicleColoredTicketMap.getOrDefault(vehicle.getColor(), new ArrayList<Ticket>());
+        colorTickets.add(ticket);
         vehicleColoredTicketMap.put(vehicle.getColor(), colorTickets);
     }
 
-    public Ticket getTicket(Vehicle vehicle){
+    public Ticket getTicketByVehicle(Vehicle vehicle){
         return vehicleTicketMap.get(vehicle);
     }
 
-    public List<Integer> getTicketNoByColor(String color){
+    public List<Ticket> getTicketNoByColor(String color){
         return vehicleColoredTicketMap.get(color);
     }
 }

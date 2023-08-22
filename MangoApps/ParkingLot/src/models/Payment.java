@@ -1,6 +1,6 @@
 package models;
 
-import Utils.IdGeneratorUtil;
+import utils.IdGeneratorUtil;
 import enums.ModeOfPayment;
 import enums.PaymentStatus;
 

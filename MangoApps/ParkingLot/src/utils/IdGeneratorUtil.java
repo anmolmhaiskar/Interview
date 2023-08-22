@@ -1,12 +1,8 @@
-package Utils;
+package utils;
 
-import models.Vehicle;
-import repositories.VehicleRepository;
-
-import java.security.SecureRandom;
 import java.security.SecureRandom;
 import java.util.HashSet;
-import java.util.Set;
+
 public class IdGeneratorUtil {
 
     public static int generateID(Object obj){

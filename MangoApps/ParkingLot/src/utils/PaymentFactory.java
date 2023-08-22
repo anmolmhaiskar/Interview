@@ -1,6 +1,5 @@
-package Utils;
+package utils;
 
-import repositories.OwnerRepository;
 import repositories.PaymentRepository;
 
 public class PaymentFactory {

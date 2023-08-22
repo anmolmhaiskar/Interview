@@ -1,7 +1,6 @@
-package Utils;
+package utils;
 
 import repositories.OwnerRepository;
-import repositories.SpotRepository;
 
 public class OwnerFactory {
     private static OwnerRepository ownerInstance;

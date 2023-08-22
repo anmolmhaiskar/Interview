@@ -1,16 +1,19 @@
 package services;
 
-import models.ParkingLot;
-import models.Spot;
+import enums.ModeOfPayment;
+import models.*;
+import utils.SpotFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ParkingService {
-    public List<Spot> spots;
+    public static void parkVehicle(Vehicle vehicle, Spot spot, Ticket ticket){
+        SpotService.setVehicleOnSpot(spot, vehicle);
+        VehicleService.addTicket(vehicle, ticket);
+    }
 
-    private ParkingService(List<Spot> spots) {
-        this.spots = new ArrayList<>();
+    public static void releaseSpot(Spot spot){
+        SpotService.vacateSpot(spot);
     }
 
 }

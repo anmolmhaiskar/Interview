@@ -1,6 +1,6 @@
 package models;
 
-import Utils.IdGeneratorUtil;
+import utils.IdGeneratorUtil;
 
 import java.util.Date;
 

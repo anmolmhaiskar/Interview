@@ -22,8 +22,12 @@ public class PaymentRepository {
         return payment;
     }
 
-    private void addPayment(Payment payment) {
+    public void addPayment(Payment payment) {
         payments.add(payment);
+    }
+
+    public void updatePaymentStatus(Payment payment, PaymentStatus paymentStatus){
+        payment.setPaymentStatus(paymentStatus);
     }
 
     public Payment getPayment(int id){

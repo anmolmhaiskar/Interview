@@ -1,9 +1,10 @@
 package models;
 
-import Utils.IdGeneratorUtil;
+import utils.IdGeneratorUtil;
 import enums.SizeCategory;
 
-import java.util.random.RandomGenerator;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Vehicle {
     private int id;
@@ -13,6 +14,7 @@ public class Vehicle {
     private SizeCategory size;
     private Owner owner;
     private Entrance entrance;
+    private List<Ticket> tickets;
 
     public Vehicle() {
         this.id = IdGeneratorUtil.generateID(this);
@@ -29,6 +31,7 @@ public class Vehicle {
         this.size = type;
         this.owner = owner;
         this.entrance = entrance;
+        tickets = new ArrayList<>();
     }
 
     public String getColor() {
@@ -70,5 +73,21 @@ public class Vehicle {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public Owner getOwner() {
+        return this.owner;
+    }
+
+    public void setOwner(Owner owner) {
+        this.owner = owner;
+    }
+
+    public void addTicket(Ticket ticket){
+        this.tickets.add(ticket);
+    }
+
+    public List<Ticket> getTickets(){
+        return this.tickets;
     }
 }

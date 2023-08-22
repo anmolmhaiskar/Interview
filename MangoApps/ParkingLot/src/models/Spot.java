@@ -1,6 +1,6 @@
 package models;
 
-import Utils.IdGeneratorUtil;
+import utils.IdGeneratorUtil;
 import enums.SizeCategory;
 
 public class Spot {
@@ -60,10 +60,6 @@ public class Spot {
 
     public void setYCoordinate(int yCoordinate) {
         this.yCoordinate = yCoordinate;
-    }
-
-    public void vacateSpot(){
-        this.vehicle = null;
     }
 
     public boolean isAvailable(){

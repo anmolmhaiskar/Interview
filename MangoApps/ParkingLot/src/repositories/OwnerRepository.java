@@ -11,9 +11,9 @@ public class OwnerRepository {
 
     private List<Owner> owners;
 
-
     public Owner createOwner(String name, String phoneNo, String gender, int age){
         Owner owner = new Owner(name, phoneNo, gender, age);
+        addOwners(owner);
         return owner;
     }
 
@@ -22,10 +22,6 @@ public class OwnerRepository {
     }
     public List<Owner> getOwners() {
         return owners;
-    }
-
-    public void addTicket(Owner owner, Ticket ticket){
-        owner.addTickets(ticket);
     }
 
     public void addVehicles(Owner owner, Vehicle vehicle){

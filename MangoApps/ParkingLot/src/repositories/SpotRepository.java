@@ -1,7 +1,7 @@
 package repositories;
 
-import Utils.EntranceFactory;
-import Utils.SpotFactory;
+import models.Vehicle;
+import utils.EntranceFactory;
 import enums.SizeCategory;
 import models.Entrance;
 import models.Spot;
@@ -105,5 +105,13 @@ public class SpotRepository {
 
     public int generateRandomNumber(int rangeStart, int rangeEnd){
         return (int) ((Math.random() * (rangeEnd - rangeStart)) + rangeStart);
+    }
+
+    public void setVehicleOnSpot(Spot spot, Vehicle vehicle) {
+        spot.setVehicle(vehicle);
+    }
+
+    public void vacateSpot(Spot spot){
+        spot.setVehicle(null);
     }
 }

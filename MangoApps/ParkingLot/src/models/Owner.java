@@ -1,6 +1,6 @@
 package models;
 
-import Utils.IdGeneratorUtil;
+import utils.IdGeneratorUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,6 @@ public class Owner {
     private String gender;
     private int age;
     private List<Vehicle> vehicles;
-    private List<Ticket> tickets;
     private List<Payment> payments;
 
     public Owner(String name, String phoneNo, String gender, int age) {
@@ -23,7 +22,6 @@ public class Owner {
         this.age = age;
         this.vehicles = new ArrayList<>();
         this.payments = new ArrayList<>();
-        this.tickets = new ArrayList<>();
     }
 
     public String getName() {
@@ -72,13 +70,5 @@ public class Owner {
 
     public void addPayments(Payment payment) {
         payments.add(payment);
-    }
-
-    public List<Ticket> getTickets() {
-        return tickets;
-    }
-
-    public void addTickets(Ticket ticket) {
-        tickets.add(ticket);
     }
 }

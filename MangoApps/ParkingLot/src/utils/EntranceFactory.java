@@ -1,7 +1,6 @@
-package Utils;
+package utils;
 
 import repositories.EntranceRepository;
-import repositories.VehicleRepository;
 
 public class EntranceFactory {
     private static EntranceRepository entranceInstance;

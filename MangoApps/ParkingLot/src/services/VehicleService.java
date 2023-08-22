@@ -19,19 +19,20 @@ public class VehicleService {
         return vehicle;
     }
 
-    public static Vehicle createVehicle(String vehicleType, String color, String state, SizeCategory type, Owner owner, Entrance entrance, String license, String company, int numberOfSeats){
+    public static Vehicle createVehicle(String vehicleType, String color, String state, SizeCategory type, Owner owner, Entrance entrance, String company, int numberOfSeats){
         validateParameters(color, state, type, owner, entrance);
-        Vehicle vehicle = vehicleRepository.createVehicle(vehicleType, color, state, type, owner, entrance, license, color, numberOfSeats);
+        Vehicle vehicle = vehicleRepository.createVehicle(vehicleType, color, state, type, owner, entrance, color, numberOfSeats);
         return vehicle;
     }
 
-    public static Car createCar(String color, String state, SizeCategory type, Owner owner, Entrance entrance, String license, String company, int numberOfSeats){
+    public static Car createCar(String color, String state, SizeCategory type, Owner owner, Entrance entrance, String company, int numberOfSeats){
         validateParameters(color, state, type, owner, entrance);
-        Car car = (Car) vehicleRepository.createCar(color, state, type, owner, entrance, license, company, numberOfSeats);
+        Car car = (Car) vehicleRepository.createCar(color, state, type, owner, entrance, company, numberOfSeats);
         return car;
     }
 
     public static List<String> getRegistrationOfVehicleByColor(String color){
+        color = color.toLowerCase();
         List<String> registrationNos = vehicleRepository.getRegistrationNoByColor(color);
         if (registrationNos!=null && !registrationNos.isEmpty()){
             return registrationNos;
@@ -41,7 +42,7 @@ public class VehicleService {
 
     public static Vehicle getVehicleByRegistrationNo(String registrationNo){
         Vehicle vehicle = vehicleRepository.getVehicleByRegistrationNo(registrationNo);
-        if(vehicle != null){
+        if(vehicle == null){
             throw new VehicleIsNotPresentException(String.format("There is no vehicle present with the given registration no: %s", registrationNo));
         }
         return vehicle;
@@ -78,5 +79,9 @@ public class VehicleService {
         if(entrance == null){
             throw new EntranceNotFoundException(String.format("Invalid entrance value is assigned to vehicle"));
         }
+    }
+
+    public static List<Vehicle> getVehicles() {
+        return vehicleRepository.getVehicles();
     }
 }

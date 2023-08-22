@@ -2,12 +2,12 @@ package services;
 
 import enums.ModeOfPayment;
 import exceptions.TicketNotGeneratedException;
-import models.Payment;
-import models.Spot;
-import models.Ticket;
-import models.Vehicle;
+import exceptions.VehicleIsNotPresentException;
+import models.*;
 import repositories.AttendantRepository;
 import utils.AttendantFactory;
+
+import java.util.List;
 
 public class AttendantService {
 
@@ -17,7 +17,14 @@ public class AttendantService {
         attendantRepository.attendantGenerator();
     }
 
+    public static List<Attendant> getAttendants(){
+        return attendantRepository.getAttendants();
+    }
+
     public static void receiveVehicle(Vehicle vehicle){
+        if(vehicle == null){
+            throw new VehicleIsNotPresentException("Invalid Vehicle. Value of vehicle is null");
+        }
         Spot spot = SpotService.findNearestSpot(vehicle);
         Ticket ticket = TicketService.createTicket(vehicle, spot);
         ParkingService.parkVehicle(vehicle, spot, ticket);

@@ -1,7 +1,9 @@
 package services;
 
+import exceptions.SpotNotAvailableException;
 import exceptions.TicketNotFoundException;
 import exceptions.TicketNotGeneratedException;
+import exceptions.VehicleIsNotPresentException;
 import models.Spot;
 import models.Ticket;
 import models.Vehicle;
@@ -15,6 +17,13 @@ public class TicketService {
 
     public static TicketRepository ticketRepository = TicketFactory.getInstance();
     public static Ticket createTicket(Vehicle vehicle, Spot spot) {
+        if(vehicle == null){
+            throw new VehicleIsNotPresentException("Invalid vehicle. Vehicle value is null");
+        }
+
+        if (spot == null){
+            throw new SpotNotAvailableException("Spot not available. Spot value is null");
+        }
         Ticket ticket = ticketRepository.createTicket(vehicle, spot);
         if(vehicle == null || spot == null){
             throw new TicketNotGeneratedException(String.format("Failed to generate the ticket for the vehicle %s for the spot %s", vehicle, spot));
@@ -45,6 +54,7 @@ public class TicketService {
     }
 
     public static List<Integer> getTicketNoByVehicleColor(String color){
+        color = color.toLowerCase();
         List<Ticket> tickets = ticketRepository.getTicketNoByColor(color);
         if(tickets==null || tickets.isEmpty()){
             throw new TicketNotFoundException(String.format("There are no tickets available with the vehicle %s color", color));

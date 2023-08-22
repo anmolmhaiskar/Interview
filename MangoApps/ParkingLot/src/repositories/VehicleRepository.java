@@ -20,26 +20,26 @@ public class VehicleRepository {
 
 
     public Vehicle createVehicle(String vehicleType, String color, String state, SizeCategory type, Owner owner, Entrance entrance){
-        Vehicle vehicle = vehicleFactory(vehicleType, color, state, type, owner, entrance, null, null, 4);
+        Vehicle vehicle = vehicleFactory(vehicleType, color, state, type, owner, entrance, null, 4);
         return vehicle;
     }
 
-    public Vehicle createVehicle(String vehicleType, String color, String state, SizeCategory type, Owner owner, Entrance entrance, String license, String company, int numberOfSeats){
+    public Vehicle createVehicle(String vehicleType, String color, String state, SizeCategory type, Owner owner, Entrance entrance, String company, int numberOfSeats){
         vehicleType = vehicleType.toLowerCase();
-        Vehicle vehicle = vehicleFactory(vehicleType, color, state, type, owner, entrance, license, company, numberOfSeats);
+        Vehicle vehicle = vehicleFactory(vehicleType, color, state, type, owner, entrance, company, numberOfSeats);
         return vehicle;
     }
 
-    public Car createCar(String color, String state, SizeCategory type, Owner owner, Entrance entrance, String license, String company, int numberOfSeats){
-        Car car = (Car) vehicleFactory("car", color, state, type, owner, entrance, license, company, numberOfSeats);
+    public Car createCar(String color, String state, SizeCategory type, Owner owner, Entrance entrance, String company, int numberOfSeats){
+        Car car = (Car) vehicleFactory("car", color, state, type, owner, entrance, company, numberOfSeats);
         addVehicle(car);
         return car;
     }
 
-    public Vehicle vehicleFactory(String vehicleType, String color, String state, SizeCategory type, Owner owner, Entrance entrance, String license, String company, int numberOfSeats){
+    public Vehicle vehicleFactory(String vehicleType, String color, String state, SizeCategory type, Owner owner, Entrance entrance, String company, int numberOfSeats){
         Vehicle vehicle;
         switch (vehicleType) {
-            case "car" -> vehicle = new Car(color, state, type, owner, entrance, license, company, numberOfSeats);
+            case "car" -> vehicle = new Car(color, state, type, owner, entrance, company, numberOfSeats);
             default -> vehicle = new Vehicle(color, state, type, owner, entrance);
         };
         addVehicle(vehicle);
@@ -51,7 +51,7 @@ public class VehicleRepository {
 
         List<String> registrationNos = colorVehicleRegistrationNoMap.getOrDefault(vehicle.getRegistrationNo(), new ArrayList<String>());
         registrationNos.add(vehicle.getRegistrationNo());
-        colorVehicleRegistrationNoMap.put(vehicle.getColor(), registrationNos);
+        colorVehicleRegistrationNoMap.put(vehicle.getColor().toLowerCase(), registrationNos);
         vehicleRegistrationNoMap.put(vehicle.getRegistrationNo(), vehicle);
     }
 

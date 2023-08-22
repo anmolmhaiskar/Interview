@@ -2,10 +2,13 @@ package services;
 
 import enums.SizeCategory;
 import exceptions.SpotNotAvailableException;
+import exceptions.VehicleIsNotPresentException;
 import models.Spot;
 import models.Vehicle;
 import repositories.SpotRepository;
 import utils.SpotFactory;
+
+import java.util.List;
 
 public class SpotService {
 
@@ -19,6 +22,9 @@ public class SpotService {
     }
 
     public static Spot findNearestSpot(Vehicle vehicle) {
+        if(vehicle == null){
+            throw new VehicleIsNotPresentException("Invalid Vehicle. Value of vehicle is null");
+        }
         Spot spot = spotRepository.getNearestSpot(vehicle.getEntrance().getGateNo(), vehicle.getSize());
         if(spot == null)
             throw new SpotNotAvailableException(String.format("There are no free spots available in the parking lot with the %s spot type", vehicle.getSize()));
@@ -31,5 +37,9 @@ public class SpotService {
 
     public static void vacateSpot(Spot spot) {
         spotRepository.vacateSpot(spot);
+    }
+
+    public static List<Spot> getSpots() {
+        return spotRepository.getSpots();
     }
 }

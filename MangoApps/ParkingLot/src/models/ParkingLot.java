@@ -1,5 +1,10 @@
 package models;
 
+import services.AttendantService;
+import services.EntranceService;
+import services.SpotService;
+import services.VehicleService;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +19,10 @@ public class ParkingLot {
     private List<Attendant> attendants;
 
     public ParkingLot() {
+        this.entrances = EntranceService.getEntrances();
+        this.vehicles = VehicleService.getVehicles();
+        this.spots = SpotService.getSpots();
+        this.attendants = AttendantService.getAttendants();
     }
 
     public ParkingLot(String name, String address, int capacity, String phoneNo) {
@@ -21,10 +30,10 @@ public class ParkingLot {
         this.address = address;
         this.capacity = capacity;
         this.phoneNo = phoneNo;
-        this.entrances = new ArrayList<>();
-        this.vehicles = new ArrayList<>();
-        this.spots = new ArrayList<>();
-        this.attendants = new ArrayList<>();
+        this.entrances = EntranceService.getEntrances();
+        this.vehicles = VehicleService.getVehicles();
+        this.spots = SpotService.getSpots();
+        this.attendants = AttendantService.getAttendants();
     }
 
     public String getName() {

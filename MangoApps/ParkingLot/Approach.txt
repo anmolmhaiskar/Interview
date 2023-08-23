@@ -1,0 +1,57 @@
+PROBLEM STATEMENT
+
+Design a parking lot which can hold n cars of different color and different registration numbers.
+Every car has been issued a ticket for a spot and the spot has been assigned based on the nearest to the entry point.
+
+The system should also return some queries such as:
+
+* Registration numbers of all cars of a particular Color.
+* Ticket number in which a car with a given registration number is placed.
+* Ticket numbers of all ticket where a car of a particular color is placed.
+
+# This should be simple command line utility with minimum these capabilities
+- create a parking lot
+- park cars in it
+- run the above specified queries
+
+# Language of your choice
+
+- Java
+
+
+APPROACH:
+//Listing Entities and their relationship with each other
+
+1. I began by studying the description of the parking lot scenario and searching for important words that usually
+   describe the different parts or elements in the problem for example nouns represent entities in the problem statement.
+
+2. After that, I made a list of these important entities from the problem statement.
+   These entities include Car, ParkingLot, Ticket, Spot, and Entrance (or entry point).
+
+3. I noticed that a car is a specific kind of vehicle. To make things simpler,
+   I created a general category called "Vehicle" that includes all types of vehicles.
+
+4. Having a general "Vehicle" category is useful because it allows for a more flexible design, especially when dealing with different types of vehicles at different times.
+   This is called "runtime polymorphism."
+
+5. Thinking about the connections between entities, I also considered the idea of an "Owner" who can own multiple vehicles, including cars.
+
+6. The requirement to find the nearest parking spot for a car from the entry point made me realize that the parking lot should have multiple gates or entry points.
+
+7. With the concept of entry points in mind and the need to issue tickets, I decided to introduce an "Attendant."
+   This person is an employee associated with a gate and works for the parking lot.
+
+8. Adding to the role of the Attendant, I included the concept of a "Payment" entity.
+   The Attendant, who handles issuing tickets, will also take care of payments when a car leaves the parking lot through the gate.
+
+// Code Flow
+
+9. Once I had the main components in place, I thought about how the different parts would work together. Considering the assignment's expectations, I found that structuring the code flow using the MVC (Model View Controller) design would be a smart choice. This approach offers a clean and modular way of organizing the code.
+
+10. With this in mind, I proceeded to create what I call "Repositories." These act as the model component in MVC. Their job is to store data and handle various operations related to that data.
+
+11. For managing the flow of requests, much like how controllers work in MVC, I decided to introduce a "Service" module. This module will take in requests and be responsible for performing validation checks on the data received.
+
+12. Recognizing that the Service modules will need to handle potential errors through exceptions, I established an "Exception" module. This space will house all the different types of exceptions that might occur during the program's execution.
+
+13. Lastly, I developed a "Utils" module. This module has the role of providing utility or helper classes and constants that are needed throughout the program. For instance, I created an "Id Generator" class that aids in generating IDs, tickets, or registration numbers as required.

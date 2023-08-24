@@ -48,7 +48,7 @@ public class Vehicle {
 
     //TODO: Set registration no to every newly created vehicle
     public void setRegistrationNo() {
-        this.registrationNo = IdGeneratorUtil.generateRegistrationNo(5, this.state);
+        this.registrationNo = IdGeneratorUtil.generateRegistrationNo(6, this.state);
     }
 
     public SizeCategory getSize() {

@@ -2,6 +2,7 @@ package services;
 
 import exceptions.InvalidOwnerDetailsException;
 import models.Owner;
+import models.Payment;
 import models.Ticket;
 import repositories.OwnerRepository;
 import utils.OwnerFactory;
@@ -31,5 +32,9 @@ public class OwnerService {
         if(age < 18 || age > 80){
             throw new InvalidOwnerDetailsException(String.format("Owner is not legalized to drive a while because is age is %s", age));
         }
+    }
+
+    public static void addPayment(Owner owner, Payment payment) {
+        ownerRepository.addPayments(owner, payment);
     }
 }

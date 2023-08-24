@@ -4,6 +4,7 @@ import exceptions.SpotNotAvailableException;
 import exceptions.TicketNotFoundException;
 import exceptions.TicketNotGeneratedException;
 import exceptions.VehicleIsNotPresentException;
+import models.Payment;
 import models.Spot;
 import models.Ticket;
 import models.Vehicle;
@@ -11,23 +12,18 @@ import repositories.TicketRepository;
 import utils.TicketFactory;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 public class TicketService {
 
     public static TicketRepository ticketRepository = TicketFactory.getInstance();
     public static Ticket createTicket(Vehicle vehicle, Spot spot) {
-        if(vehicle == null){
-            throw new VehicleIsNotPresentException("Invalid vehicle. Vehicle value is null");
-        }
-
-        if (spot == null){
-            throw new SpotNotAvailableException("Spot not available. Spot value is null");
-        }
-        Ticket ticket = ticketRepository.createTicket(vehicle, spot);
         if(vehicle == null || spot == null){
             throw new TicketNotGeneratedException(String.format("Failed to generate the ticket for the vehicle %s for the spot %s", vehicle, spot));
         }
+        Ticket ticket = ticketRepository.createTicket(vehicle, spot);
+        VehicleService.addTicket(vehicle, ticket);
         return ticket;
     }
 
@@ -39,7 +35,7 @@ public class TicketService {
     }
 
     public static double calculateCost(Ticket ticket) {
-        double hours = ticket.getEnd_time().getTime() - ticket.getStart_time().getTime();
+        long hours = TimeUnit.MILLISECONDS.toHours(ticket.getEnd_time().getTime() - ticket.getStart_time().getTime());
         double totalCost = hours * ticket.getSpot().getCostPerHour();
         return totalCost;
     }
@@ -60,5 +56,9 @@ public class TicketService {
             throw new TicketNotFoundException(String.format("There are no tickets available with the vehicle %s color", color));
         }
         return tickets.stream().map(ticket -> ticket.getTicketNo()).collect(Collectors.toList());
+    }
+
+    public static void setPayment(Ticket ticket,Payment payment) {
+        ticketRepository.setPayment(ticket, payment);
     }
 }

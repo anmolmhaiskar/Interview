@@ -36,6 +36,9 @@ public class SpotService {
     }
 
     public static void vacateSpot(Spot spot) {
+        if(spot == null){
+            throw new SpotNotAvailableException("Cannot vacate spot. Spot value is null or not available");
+        }
         spotRepository.vacateSpot(spot);
     }
 

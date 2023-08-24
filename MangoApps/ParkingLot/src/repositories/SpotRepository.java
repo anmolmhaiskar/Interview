@@ -12,8 +12,6 @@ public class SpotRepository {
 
     private List<Spot> spots;
     private HashMap<SizeCategory, List<Spot>> sizeCategorySpotMap;
-
-    // hash<gateID, treemap<DistanceFromGate, List<Spot> > >
     private HashMap<Integer, TreeMap<Integer, List<Spot>>> nearestSpotMap;
     private EntranceRepository entranceRepository;
 
@@ -68,17 +66,9 @@ public class SpotRepository {
         for(Entrance entrance : entrances){
             int distance = calculateDistance(entrance.getXCoordinate(), entrance.getYCoordinate(), spot.getXCoordinate(), spot.getYCoordinate());
             TreeMap<Integer, List<Spot>> treeMap = nearestSpotMap.get(entrance.getGateNo());
-            if(treeMap.containsKey(distance)){
-                for(List<Spot> closeSpots : treeMap.values()){
-                    closeSpots.add(spot);
-                    treeMap.put(distance, closeSpots);
-                }
-            }
-            else {
-                List<Spot> newSpot = new ArrayList<>();
-                newSpot.add(spot);
-                treeMap.put(distance, newSpot);
-            }
+            List<Spot> closeSpotList = treeMap.getOrDefault(distance, new ArrayList<Spot>());
+            closeSpotList.add(spot);
+            treeMap.put(distance, closeSpotList);
         }
     }
 

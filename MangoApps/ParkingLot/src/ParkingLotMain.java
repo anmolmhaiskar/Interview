@@ -85,7 +85,7 @@ public class ParkingLotMain {
 //        create tickets for the vehicles
 
         Payment payment1 = PaymentService.makePayment(ticket1, ModeOfPayment.CASH);
-        Payment payment2 = PaymentService.makePayment(ticket2, ModeOfPayment.CREDIT_CARD);
+//        Payment payment2 = PaymentService.makePayment(ticket2, ModeOfPayment.CREDIT_CARD);
         Payment payment3 = PaymentService.makePayment(ticket3, ModeOfPayment.CASH);
         Payment payment4 = PaymentService.makePayment(ticket4, ModeOfPayment.UPI);
         Payment payment5 = PaymentService.makePayment(ticket5, ModeOfPayment.DEBIT_CARD);
@@ -189,7 +189,7 @@ public class ParkingLotMain {
 
 //        trying to create ticket for null vehicle
         try{
-            Ticket ticket = TicketService.createTicket(null, spot2);
+            Ticket ticket = TicketService.createTicket(null, spot3);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
@@ -202,14 +202,16 @@ public class ParkingLotMain {
 
         System.out.println("\n\n PAYMENT TESTS");
         try{
-            Payment payment = PaymentService.makePayment(ticket1, null);
+            Payment payment = AttendantService.releaseSpot(spot2, ModeOfPayment.CASH);
+//            Payment payment = PaymentService.makePayment(ticket1, null);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }
 
 //        trying to create ticket for null vehicle
         try{
-            Payment payment = PaymentService.makePayment(null, ModeOfPayment.CASH);
+            Payment payment = AttendantService.releaseSpot(spot2, ModeOfPayment.UPI);
+//            Payment payment = PaymentService.makePayment(null, ModeOfPayment.CASH);
         }catch (Exception e){
             System.out.println(e.getMessage());
         }

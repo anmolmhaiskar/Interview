@@ -1,6 +1,7 @@
 package services;
 
 import enums.ModeOfPayment;
+import exceptions.SpotNotAvailableException;
 import exceptions.TicketNotGeneratedException;
 import exceptions.VehicleIsNotPresentException;
 import models.*;
@@ -30,9 +31,15 @@ public class AttendantService {
         ParkingService.parkVehicle(vehicle, spot, ticket);
     }
 
-    public static void releaseSpot(Spot spot, ModeOfPayment modeOfPayment){
-        ParkingService.releaseSpot(spot);
+    public static Payment releaseSpot(Spot spot, ModeOfPayment modeOfPayment){
+        if(spot == null){
+            throw new SpotNotAvailableException("Invalid spot. Spot value is null or not present");
+        }
+        if(spot.getVehicle() == null){
+            throw new VehicleIsNotPresentException("Invalid vehicle. Vehicle value is null or not present");
+        }
         Ticket ticket = TicketService.updateCost(VehicleService.getLastTicket(spot.getVehicle()));
         Payment payment = PaymentService.makePayment(ticket, modeOfPayment);
+        return payment;
     }
 }

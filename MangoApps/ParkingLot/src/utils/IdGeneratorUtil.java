@@ -24,8 +24,8 @@ public class IdGeneratorUtil {
 
             SecureRandom random = new SecureRandom();
             StringBuilder codeBuilder = new StringBuilder(state.substring(0,2).toUpperCase());
-            int numericCount = 0;
-            // Generate 3 random alphabets
+            int alphabetCount = 0;
+            // Generate 2 random alphabets and 2 random numbers
             for (int i = 0; i < length; i++) {
                 if(codeBuilder.length()>=length){
                     break;
@@ -33,10 +33,10 @@ public class IdGeneratorUtil {
                 int randomIntIndex = random.nextInt(NUMBERS.length());
                 codeBuilder.append(NUMBERS.charAt(randomIntIndex));
 
-                if(numericCount < 2){
+                if(alphabetCount < 2){
                     int randomStringIndex = random.nextInt(ALPHABETS.length());
                     codeBuilder.append(ALPHABETS.charAt(randomStringIndex));
-                    numericCount++;
+                    alphabetCount++;
                 }
             }
 

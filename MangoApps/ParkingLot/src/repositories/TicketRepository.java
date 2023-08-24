@@ -1,5 +1,6 @@
 package repositories;
 
+import models.Payment;
 import models.Spot;
 import models.Ticket;
 import models.Vehicle;
@@ -51,5 +52,9 @@ public class TicketRepository {
 
     public List<Ticket> getTicketNoByColor(String color){
         return vehicleColoredTicketMap.get(color);
+    }
+
+    public void setPayment(Ticket ticket, Payment payment) {
+        ticket.setPayment(payment);
     }
 }
